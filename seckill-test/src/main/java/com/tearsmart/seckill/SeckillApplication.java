@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
   * @author tear-smart
   * @date 2018/12/5 14:39
   */
-@MapperScan(basePackages = "com.tearsmart.seckill")
+@MapperScan(basePackages = "com.tearsmart.seckill.dao")
 @SpringBootApplication
 public class SeckillApplication {
 
