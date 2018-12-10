@@ -40,7 +40,7 @@ public class Result<T> {
      * @param data 返回结果中包含的数据
      * @return 通用返回值
      */
-    public static <T>Result<T> success(T data) {
+    public static <T> Result<T> success(T data) {
         return new Result(data);
     }
 

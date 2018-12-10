@@ -7,19 +7,20 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * <p>
- *  mybatis 配置文件
+ * mybatis 配置文件
  * </p>
  * @author tear-smart
  * @date 2018-12-05
  */
 @Configuration
-public class MybatisConfig  {
+public class MybatisConfig {
     @Bean
-    public PerformanceInterceptor performanceInterceptor(){
+    public PerformanceInterceptor performanceInterceptor() {
         return new PerformanceInterceptor();
     }
+
     @Bean
-    public OptimisticLockerInterceptor optimisticLockerInterceptor(){
+    public OptimisticLockerInterceptor optimisticLockerInterceptor() {
         return new OptimisticLockerInterceptor();
     }
 }

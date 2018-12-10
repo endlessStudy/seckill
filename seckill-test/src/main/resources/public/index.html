@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../static/js/md5.min.js"></script>
+</head>
+<body>
+
+</body>
+<script>
+    console.log("111111111");
+    var inputPass = "123456";
+    var salt = "1a2b3c4d";
+     var str = salt.charAt(0) + salt.charAt(2) + inputPass + salt.charAt(4) + salt.charAt(6);
+     console.log(str);
+    console.log(md5(str));
+</script>
+</html>
