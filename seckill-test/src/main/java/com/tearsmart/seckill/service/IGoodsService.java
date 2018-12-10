@@ -1,13 +1,12 @@
 package com.tearsmart.seckill.service;
 
-import com.tearsmart.seckill.domain.Goods;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.tearsmart.seckill.domain.Goods;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
- *
  * @author tear-smart
  * @since 2018-12-05
  */

@@ -1,17 +1,17 @@
 package com.tearsmart.seckill.domain;
 
-import java.math.BigDecimal;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
+
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 /**
  * <p>
- * 
- * </p>
  *
+ * </p>
  * @author tear-smart
  * @since 2018-12-05
  */
@@ -121,13 +121,13 @@ public class Goods extends Model<Goods> {
     @Override
     public String toString() {
         return "Goods{" +
-        "id=" + id +
-        ", goodsName=" + goodsName +
-        ", goodsTitle=" + goodsTitle +
-        ", goodsImg=" + goodsImg +
-        ", goodsDetail=" + goodsDetail +
-        ", goodsPrice=" + goodsPrice +
-        ", goodsStock=" + goodsStock +
-        "}";
+                "id=" + id +
+                ", goodsName=" + goodsName +
+                ", goodsTitle=" + goodsTitle +
+                ", goodsImg=" + goodsImg +
+                ", goodsDetail=" + goodsDetail +
+                ", goodsPrice=" + goodsPrice +
+                ", goodsStock=" + goodsStock +
+                "}";
     }
 }

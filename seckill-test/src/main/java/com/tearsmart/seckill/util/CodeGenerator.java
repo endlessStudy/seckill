@@ -3,19 +3,16 @@ package com.tearsmart.seckill.util;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
-import com.baomidou.mybatisplus.generator.InjectionConfig;
-import com.baomidou.mybatisplus.generator.config.*;
+import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
+import com.baomidou.mybatisplus.generator.config.GlobalConfig;
+import com.baomidou.mybatisplus.generator.config.PackageConfig;
+import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
-import com.baomidou.mybatisplus.generator.config.po.TableInfo;
-import com.baomidou.mybatisplus.generator.config.rules.DbColumnType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.config.rules.PropertyInfo;
-import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
 import org.apache.commons.lang3.StringUtils;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -50,7 +47,7 @@ public class CodeGenerator {
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
-        gc.setOutputDir(projectPath );
+        gc.setOutputDir(projectPath);
         gc.setAuthor("tear-smart");
         gc.setActiveRecord(true);
         gc.setBaseResultMap(true);
@@ -63,11 +60,11 @@ public class CodeGenerator {
         dsc.setDbType(DbType.MYSQL);
         dsc.setUrl("jdbc:mysql://localhost:3306/miaosha?useUnicode=true&useSSL=false&characterEncoding=utf8");
         // dsc.setSchemaName("public");
-        dsc.setTypeConvert(new MySqlTypeConvert(){
+        dsc.setTypeConvert(new MySqlTypeConvert() {
             @Override
-           public PropertyInfo processTypeConvert(GlobalConfig globalConfig, String fieldType) {
-               return super.processTypeConvert(globalConfig, fieldType);
-           }
+            public PropertyInfo processTypeConvert(GlobalConfig globalConfig, String fieldType) {
+                return super.processTypeConvert(globalConfig, fieldType);
+            }
 
 
         });
@@ -121,7 +118,7 @@ public class CodeGenerator {
         // strategy.setSuperControllerClass("com.lyl.mongo.common.BaseController");
         // strategy.setSuperServiceClass("com.lyl.mongo.common.BaseService");
         // strategy.setSuperServiceImplClass("com.lyl.mongo.common.BaseServiceImpl");
-        // strategy.setInclude("goods");
+        strategy.setInclude("miaosha_user");
         // strategy.setSuperEntityColumns("id");
         // strategy.setControllerMappingHyphenStyle(true);
         // strategy.setTablePrefix(pc.getModuleName() + "_");

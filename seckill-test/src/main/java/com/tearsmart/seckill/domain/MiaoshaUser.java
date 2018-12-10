@@ -1,17 +1,20 @@
 package com.tearsmart.seckill.domain;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
-import java.time.LocalDateTime;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 /**
  * <p>
- * 
- * </p>
  *
+ * </p>
  * @author tear-smart
- * @since 2018-12-05
+ * @since 2018-12-09
  */
 @TableName("miaosha_user")
 public class MiaoshaUser extends Model<MiaoshaUser> {
@@ -19,15 +22,26 @@ public class MiaoshaUser extends Model<MiaoshaUser> {
     private static final long serialVersionUID = 1L;
 
     /**
-     * 用户ID，手机号码
+     * 用户ID
      */
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
+    /**
+     * 手机号码
+     */
+    @NotNull
+    private String phoneNumber;
+    /**
+     * 昵称
+     */
+    @NotNull
     private String nickname;
 
     /**
      * MD5(MD5(pass明文+固定salt) + salt)
      */
+    @NotNull
     private String password;
 
     private String salt;
@@ -59,6 +73,14 @@ public class MiaoshaUser extends Model<MiaoshaUser> {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getNickname() {
@@ -125,14 +147,15 @@ public class MiaoshaUser extends Model<MiaoshaUser> {
     @Override
     public String toString() {
         return "MiaoshaUser{" +
-        "id=" + id +
-        ", nickname=" + nickname +
-        ", password=" + password +
-        ", salt=" + salt +
-        ", head=" + head +
-        ", registerDate=" + registerDate +
-        ", lastLoginDate=" + lastLoginDate +
-        ", loginCount=" + loginCount +
-        "}";
+                "id=" + id +
+                ", phoneNumber=" + phoneNumber +
+                ", nickname=" + nickname +
+                ", password=" + password +
+                ", salt=" + salt +
+                ", head=" + head +
+                ", registerDate=" + registerDate +
+                ", lastLoginDate=" + lastLoginDate +
+                ", loginCount=" + loginCount +
+                "}";
     }
 }

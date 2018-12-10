@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * <p>
- *  样例
+ * 样例
  * </p>
  * @author liuyl
  * @date 2018-12-05
@@ -18,13 +18,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("sample")
 public class SampleController {
     @RequestMapping("thy")
-    public String thymeleaf(Model model){
+    public String thymeleaf(Model model) {
         model.addAttribute("username", "tear-smart");
         return "hello";
     }
+
     @RequestMapping("result")
     @ResponseBody
-    public Result result(){
+    public Result result() {
         // return Result.success("Success!");
         return Result.error(CodeMessage.SERVER_ERROR);
     }
