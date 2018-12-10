@@ -7,12 +7,18 @@ import com.alibaba.fastjson.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * <p>
+ *     JSONUtils
+ * </p>
+ * @author tear-smart
+ */
 public class JSONUtils {
     /**
      * Bean对象转JSON
-     * @param object
-     * @param dataFormatString
-     * @return
+     * @param object 日期
+     * @param dataFormatString 日期格式
+     * @return 格式化后的日期
      */
     public static String beanToJson(Object object, String dataFormatString) {
         if (object != null) {
@@ -27,15 +33,15 @@ public class JSONUtils {
 
     /**
      * Bean对象转JSON
-     * @param object
-     * @return
+     * @param object object对象
+     * @return 转换后的json字符串
      */
     public static String beanToJson(Object object) {
-        if (object != null) {
-            return JSON.toJSONString(object);
-        } else {
-            return null;
+        if(object instanceof Integer || object instanceof Long || object instanceof Float ||
+                object instanceof Double || object instanceof Boolean || object instanceof String){
+            return String.valueOf(object);
         }
+            return JSON.toJSONString(object);
     }
 
     /**
@@ -56,7 +62,7 @@ public class JSONUtils {
     /**
      * 将json字符串转换成对象
      * @param json
-     * @param clazz
+     * @param clazz 需要转换成的类
      * @return
      */
     public static Object jsonToBean(String json, Object clazz) {

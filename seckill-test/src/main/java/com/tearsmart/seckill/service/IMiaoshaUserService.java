@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.tearsmart.seckill.domain.MiaoshaUser;
 import com.tearsmart.seckill.vo.LoginVo;
 
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * <p>
  * 服务类
@@ -17,5 +19,5 @@ public interface IMiaoshaUserService extends IService<MiaoshaUser> {
      * @param loginVo 登录vo
      * @return codeMessage
      */
-    boolean login(LoginVo loginVo);
+    boolean login(HttpServletResponse response,LoginVo loginVo);
 }

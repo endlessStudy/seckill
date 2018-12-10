@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 
@@ -27,8 +28,8 @@ public class LoginController {
 
     @RequestMapping("/do_login")
     @ResponseBody
-    public Result doLogin(@Valid LoginVo loginVo) throws IOException {
-        miaoshaUserService.login(loginVo);
+    public Result doLogin(HttpServletResponse response,@Valid LoginVo loginVo) throws IOException {
+        miaoshaUserService.login(response,loginVo);
         return Result.success(true);
     }
 }

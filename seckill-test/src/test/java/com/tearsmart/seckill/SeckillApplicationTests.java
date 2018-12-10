@@ -42,7 +42,7 @@ public class SeckillApplicationTests {
 
     @Test
     public void redisTest() {
-        iRedisService.get();
+        // iRedisService.get();
     }
 
     @Before

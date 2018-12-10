@@ -31,9 +31,7 @@ public class Test {
         }*/
         System.out.println(String.format(CodeMessage.BIND_EXCEPTION.getMessage(), "123"));
 
-    }
-    private static void print(@Valid LoginVo loginVo){
-        System.out.println(loginVo.toString());
 
     }
+
 }
