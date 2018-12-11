@@ -5,7 +5,7 @@ package com.tearsmart.seckill.redis;
  *
  * </p>
  * @author tear-smart
- * @date 2018-12-10
+ * @date 2018-12-11
  */
-public class MiaoshaUserRedis  {
+public interface BaseRedisKey {
 }
