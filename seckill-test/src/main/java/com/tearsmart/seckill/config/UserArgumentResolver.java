@@ -50,14 +50,15 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
             return null;
         }
         String token = StringUtils.isEmpty(paramValue) ? cookieValue : paramValue;
-        return userService.getUserFromRedis(response,token);
+        MiaoshaUser userFromRedis = userService.getUserFromRedis(response, token);
+        return userFromRedis;
     }
 
     public String getCookieValue(HttpServletRequest request,String cookieName) {
         final String string = null;
         Cookie[] cookies = request.getCookies();
         try {
-            return Stream.of(cookies).filter(c -> StringUtils.equals(c.getName(), cookieName)).findFirst().get().getName();
+            return Stream.of(cookies).filter(c -> StringUtils.equals(c.getName(), cookieName)).findFirst().get().getValue();
 
         }catch (Exception e){
             return null;
@@ -68,15 +69,5 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
             }
         }*/
     }
-    public static void main(String[] args) {
-        MiaoshaUser miaoshaUser = new MiaoshaUser();
-        miaoshaUser.setNickname("liuyl");
-        List<MiaoshaUser> cookies = new ArrayList<MiaoshaUser>();
-        String nickname = cookies.stream()
-                .filter(c -> StringUtils.equals(c.getNickname(), "liuyl"))
-                .findAny()
-                 .get()
-                .getNickname();
-        System.out.println(nickname);
-    }
+
 }

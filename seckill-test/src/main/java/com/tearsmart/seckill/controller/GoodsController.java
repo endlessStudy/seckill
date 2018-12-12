@@ -33,15 +33,8 @@ public class GoodsController {
     IRedisService redisService;
     @RequestMapping("/goodsList")
     public String getGoodsList(HttpServletResponse response,Model model,
-                               @CookieValue(value = Constant.USER_COOKIE_NAME,required = false) String cookieToken,
-                               @RequestParam(value = Constant.USER_COOKIE_NAME,required = false) String paramToken ) {
-        if (StringUtils.isEmpty(cookieToken) && StringUtils.isEmpty(paramToken)) {
-            return "/";
-        }
-        String token = StringUtils.isEmpty(cookieToken) ? paramToken : cookieToken;
-        MiaoshaUser user = iGoodsService.getMiaoshaUserFromRedis(response,token);
+                               MiaoshaUser user) {
         model.addAttribute("user", user);
-        // List<Goods> list = iGoodsService.list(null);
         return "hello";
     }
 }

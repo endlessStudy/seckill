@@ -23,6 +23,11 @@ public class WebConfig implements WebMvcConfigurer {
 	// @Autowired
 	// AccessInterceptor accessInterceptor;
 
+    /**
+     * 添加参数解析类到 HandlerMethodArgumentResolver 集合中,
+     *
+     * @param argumentResolvers
+     */
 	@Override
 	public void addArgumentResolvers(List<HandlerMethodArgumentResolver> argumentResolvers) {
 		argumentResolvers.add(userArgumentResolver);
