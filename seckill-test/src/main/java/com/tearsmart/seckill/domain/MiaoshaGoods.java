@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -17,6 +18,7 @@ import java.time.LocalDateTime;
  * @since 2018-12-05
  */
 @TableName("miaosha_goods")
+@Data
 public class MiaoshaGoods extends Model<MiaoshaGoods> {
 
     private static final long serialVersionUID = 1L;
@@ -53,68 +55,11 @@ public class MiaoshaGoods extends Model<MiaoshaGoods> {
     private LocalDateTime endDate;
 
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getGoodsId() {
-        return goodsId;
-    }
-
-    public void setGoodsId(Long goodsId) {
-        this.goodsId = goodsId;
-    }
-
-    public BigDecimal getMiaoshaPrice() {
-        return miaoshaPrice;
-    }
-
-    public void setMiaoshaPrice(BigDecimal miaoshaPrice) {
-        this.miaoshaPrice = miaoshaPrice;
-    }
-
-    public Integer getStockCount() {
-        return stockCount;
-    }
-
-    public void setStockCount(Integer stockCount) {
-        this.stockCount = stockCount;
-    }
-
-    public LocalDateTime getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(LocalDateTime startDate) {
-        this.startDate = startDate;
-    }
-
-    public LocalDateTime getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(LocalDateTime endDate) {
-        this.endDate = endDate;
-    }
-
+    /**
+     * 主键值
+     */
     @Override
     protected Serializable pkVal() {
-        return this.id;
-    }
-
-    @Override
-    public String toString() {
-        return "MiaoshaGoods{" +
-                "id=" + id +
-                ", goodsId=" + goodsId +
-                ", miaoshaPrice=" + miaoshaPrice +
-                ", stockCount=" + stockCount +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                "}";
+        return null;
     }
 }

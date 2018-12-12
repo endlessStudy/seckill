@@ -4,6 +4,10 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -17,6 +21,8 @@ import java.time.LocalDateTime;
  * @since 2018-12-09
  */
 @TableName("miaosha_user")
+@Data
+@Accessors(chain = true)
 public class MiaoshaUser extends Model<MiaoshaUser> {
 
     private static final long serialVersionUID = 1L;
@@ -67,95 +73,11 @@ public class MiaoshaUser extends Model<MiaoshaUser> {
     private Integer loginCount;
 
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getNickname() {
-        return nickname;
-    }
-
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getSalt() {
-        return salt;
-    }
-
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
-
-    public String getHead() {
-        return head;
-    }
-
-    public void setHead(String head) {
-        this.head = head;
-    }
-
-    public LocalDateTime getRegisterDate() {
-        return registerDate;
-    }
-
-    public void setRegisterDate(LocalDateTime registerDate) {
-        this.registerDate = registerDate;
-    }
-
-    public LocalDateTime getLastLoginDate() {
-        return lastLoginDate;
-    }
-
-    public void setLastLoginDate(LocalDateTime lastLoginDate) {
-        this.lastLoginDate = lastLoginDate;
-    }
-
-    public Integer getLoginCount() {
-        return loginCount;
-    }
-
-    public void setLoginCount(Integer loginCount) {
-        this.loginCount = loginCount;
-    }
-
+    /**
+     * 主键值
+     */
     @Override
     protected Serializable pkVal() {
-        return this.id;
-    }
-
-    @Override
-    public String toString() {
-        return "MiaoshaUser{" +
-                "id=" + id +
-                ", phoneNumber=" + phoneNumber +
-                ", nickname=" + nickname +
-                ", password=" + password +
-                ", salt=" + salt +
-                ", head=" + head +
-                ", registerDate=" + registerDate +
-                ", lastLoginDate=" + lastLoginDate +
-                ", loginCount=" + loginCount +
-                "}";
+        return null;
     }
 }

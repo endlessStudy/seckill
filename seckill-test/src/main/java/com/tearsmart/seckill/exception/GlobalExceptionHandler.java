@@ -24,6 +24,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public Result exceptionHandler(Exception e) {
+        e.printStackTrace();
         if (e instanceof GlobalException) {
             GlobalException globalException = (GlobalException) e;
             return Result.error(globalException.getCodeMessage());

@@ -15,7 +15,6 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -31,6 +30,7 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
 
     @Autowired
     IMiaoshaUserService userService;
+
 
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
@@ -50,24 +50,17 @@ public class UserArgumentResolver implements HandlerMethodArgumentResolver {
             return null;
         }
         String token = StringUtils.isEmpty(paramValue) ? cookieValue : paramValue;
-        MiaoshaUser userFromRedis = userService.getUserFromRedis(response, token);
-        return userFromRedis;
+        return userService.getUserFromRedis(response, token);
     }
 
-    public String getCookieValue(HttpServletRequest request,String cookieName) {
+    public String getCookieValue(HttpServletRequest request, String cookieName) {
         final String string = null;
         Cookie[] cookies = request.getCookies();
-        try {
-            return Stream.of(cookies).filter(c -> StringUtils.equals(c.getName(), cookieName)).findFirst().get().getValue();
-
-        }catch (Exception e){
-            return null;
-        }
+        return Stream.of(cookies).filter(c -> StringUtils.equals(c.getName(), cookieName)).findFirst().orElse(null).getValue();
       /*  for (Cookie cookie : cookies) {
             if (StringUtils.equals(cookie.getName(),cookieName)) {
                 return cookie.getName();
             }
         }*/
     }
-
 }
