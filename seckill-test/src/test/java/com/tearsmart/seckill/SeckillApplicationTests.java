@@ -7,19 +7,18 @@ import com.tearsmart.seckill.dao.UserMapper;
 import com.tearsmart.seckill.domain.User;
 import com.tearsmart.seckill.service.IRedisService;
 import com.tearsmart.seckill.vo.LoginVo;
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -33,7 +32,14 @@ public class SeckillApplicationTests {
     private MockMvc mockMvc;
     @Autowired
     private WebApplicationContext context;
+    @Autowired
+    private RedisTemplate redisTemplate;
+    @Autowired
 
+    @Test
+    public void miaoTest(){
+
+    }
     @Test
     public void test() {
         User user = userMapper.selectOne(new QueryWrapper<>());

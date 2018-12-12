@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
  * <p>
@@ -23,11 +24,4 @@ public class SeckillApplication {
         SpringApplication.run(SeckillApplication.class, args);
     }
 
-    @Autowired
-    StringRedisTemplate redisTemplate;
-
-    @Bean
-    public HashOperations<String, String, Object> hashOperations() {
-        return redisTemplate.opsForHash();
-    }
 }

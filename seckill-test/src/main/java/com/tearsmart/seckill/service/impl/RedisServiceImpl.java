@@ -1,8 +1,7 @@
 package com.tearsmart.seckill.service.impl;
 
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.tearsmart.seckill.domain.User;
+import com.alibaba.druid.util.StringUtils;
+import com.tearsmart.seckill.redis.BasePrefix;
 import com.tearsmart.seckill.service.IRedisService;
 import com.tearsmart.seckill.util.JSONUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +10,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <p>
@@ -29,8 +27,14 @@ public class RedisServiceImpl implements IRedisService {
     private HashOperations hashOperations;
 
     @Override
-    public <T> void get(String key,Class<T> clazz) {
-
+    public <T> T get(BasePrefix prefix, String key, Class<T> clazz) {
+        if (StringUtils.isEmpty(key)) {
+            return null;
+        }
+        String realKey = prefix.getPrefix() + ":"+key;
+        String result = srTemplate.opsForValue().get(realKey);
+        T t = (T) JSONUtils.jsonToBean(result, clazz);
+        return t;
     }
 
     /**
@@ -40,9 +44,19 @@ public class RedisServiceImpl implements IRedisService {
      * @param value
      */
     @Override
-    public <V> void set(String prefix,String key, V value) {
-        String redisKey = "";
-       srTemplate.opsForValue().set(key, JSONUtils.beanToJson(value));
+    public <V> boolean set(BasePrefix prefix, String key, V value) {
+        String data = JSONUtils.beanToJson(value);
+        if (data == null || data.length() == 0) {
+            return false;
+        }
+        int expire = prefix.expireSeconds();
+        String realKey = prefix.getPrefix() + ":" +key;
+        if (expire == BasePrefix.NO_EXPIRE) {
+            srTemplate.opsForValue().set(key, data);
+        } else {
+            srTemplate.opsForValue().set(realKey, data, expire, TimeUnit.SECONDS);
+        }
+        return true;
     }
 
 }

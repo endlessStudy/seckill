@@ -16,8 +16,16 @@ import javax.servlet.http.HttpServletResponse;
 public interface IMiaoshaUserService extends IService<MiaoshaUser> {
     /**
      * 登录查询验证
+     * @param response response
      * @param loginVo 登录vo
      * @return codeMessage
      */
     boolean login(HttpServletResponse response,LoginVo loginVo);
+
+    /**
+     * 根据token从redis中获取用户信息
+     * @param response
+     * @param token
+     */
+    MiaoshaUser getUserFromRedis(HttpServletResponse response,String token);
 }

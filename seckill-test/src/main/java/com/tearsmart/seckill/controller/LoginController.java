@@ -29,7 +29,7 @@ public class LoginController {
     @RequestMapping("/do_login")
     @ResponseBody
     public Result doLogin(HttpServletResponse response,@Valid LoginVo loginVo) throws IOException {
-        miaoshaUserService.login(response,loginVo);
+        miaoshaUserService.login(response, loginVo);
         return Result.success(true);
     }
 }

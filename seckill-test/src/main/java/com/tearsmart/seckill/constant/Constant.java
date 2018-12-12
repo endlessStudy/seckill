@@ -11,10 +11,10 @@ public class Constant {
     /**
      * cookie 名字
      */
-    public static String USER_COOKIE_NAME = "token";
+    public static final String USER_COOKIE_NAME = "token";
     /**
      * cookie 过期时间
      */
-    public static Integer USER_COOKIE_EXPIRY = 3600;
+    public static final Integer USER_COOKIE_EXPIRY = 3600;
 
 }

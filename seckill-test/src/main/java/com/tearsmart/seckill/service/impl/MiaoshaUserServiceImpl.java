@@ -7,12 +7,15 @@ import com.tearsmart.seckill.constant.Constant;
 import com.tearsmart.seckill.dao.MiaoshaUserMapper;
 import com.tearsmart.seckill.domain.MiaoshaUser;
 import com.tearsmart.seckill.exception.GlobalException;
+import com.tearsmart.seckill.redis.BasePrefix;
+import com.tearsmart.seckill.redis.MiaoshaUserKey;
 import com.tearsmart.seckill.result.CodeMessage;
 import com.tearsmart.seckill.service.IMiaoshaUserService;
 import com.tearsmart.seckill.service.IRedisService;
 import com.tearsmart.seckill.util.Md5Utils;
 import com.tearsmart.seckill.util.UUIDUtils;
 import com.tearsmart.seckill.vo.LoginVo;
+import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +35,6 @@ public class MiaoshaUserServiceImpl extends ServiceImpl<MiaoshaUserMapper, Miaos
     private MiaoshaUserMapper miaoshaUserMapper;
     @Autowired
     IRedisService redisService;
-
     /**
      * 用户登录验证
      * @param loginVo 登录vo
@@ -56,12 +58,37 @@ public class MiaoshaUserServiceImpl extends ServiceImpl<MiaoshaUserMapper, Miaos
         }
         //获取uuid作为token
         String token = UUIDUtils.getId();
-        redisService.set("",token,user);
+        addCookie(response, user, token);
+        return true;
+    }
+
+    /**
+     * 根据token从redis中获取用户信息
+     * @param token
+     */
+    @Override
+    public MiaoshaUser getUserFromRedis(HttpServletResponse response,String token) {
+        if (StringUtils.isEmpty(token)){
+            return null;
+        }
+        MiaoshaUser miaoshaUser = redisService.get(MiaoshaUserKey.token, token, MiaoshaUser.class);
+        if (miaoshaUser != null) {
+            addCookie(response,miaoshaUser,token);
+        }
+        return miaoshaUser;
+    }
+
+    /**
+     * 添加cookie,并将token存入redis
+     * @param response
+     * @param user
+     * @param token
+     */
+    private void addCookie(HttpServletResponse response, MiaoshaUser user, String token) {
+        redisService.set(MiaoshaUserKey.token,token,user);
         Cookie cookie = new Cookie(Constant.USER_COOKIE_NAME, token);
         cookie.setMaxAge(Constant.USER_COOKIE_EXPIRY);
         cookie.setPath("/");
         response.addCookie(cookie);
-        // redisService.saveUser();
-        return true;
     }
 }

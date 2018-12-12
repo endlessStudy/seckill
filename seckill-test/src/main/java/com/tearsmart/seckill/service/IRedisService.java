@@ -1,6 +1,7 @@
 package com.tearsmart.seckill.service;
 
 import com.tearsmart.seckill.domain.MiaoshaUser;
+import com.tearsmart.seckill.redis.BasePrefix;
 
 /**
  * <p>
@@ -12,11 +13,12 @@ import com.tearsmart.seckill.domain.MiaoshaUser;
 public interface IRedisService {
     /**
      * 从redis中取出数据
+     * @param prefix
      * @param key
      * @param clazz
      * @param <T>
      */
-    <T> void get(String key,Class<T> clazz);
+    <T> T get(BasePrefix prefix,String key,Class<T> clazz);
 
     /**
      * redis添加数据
@@ -24,5 +26,5 @@ public interface IRedisService {
      * @param key
      * @param value
      */
-     <V> void set(String prefix,String key, V value);
+     <V> boolean set(BasePrefix prefix, String key, V value);
 }

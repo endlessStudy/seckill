@@ -4,6 +4,7 @@ import com.alibaba.druid.util.StringUtils;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -65,11 +66,11 @@ public class JSONUtils {
      * @param clazz 需要转换成的类
      * @return
      */
-    public static Object jsonToBean(String json, Object clazz) {
+    public static <T> T jsonToBean(String json, Class<T> clazz) {
         if (StringUtils.isEmpty(json) || clazz == null) {
             return null;
         }
-        return JSON.parseObject(json, clazz.getClass());
+        return JSON.parseObject(json, clazz);
     }
 
     /**
