@@ -34,4 +34,14 @@ public class MiaoshaGoodsServiceImpl extends ServiceImpl<MiaoshaGoodsMapper, Mia
     public List<GoodsVo> getMiaoshaGoodsDesList() {
         return miaoshaGoodsMapper.getMiaoshaGoodsDesList();
     }
+
+    /**
+     * 根据商品Id查询商品详细信息
+     * @param goodsId
+     * @return
+     */
+    @Override
+    public GoodsVo getMiaoshaGoodsDetailById(long goodsId) {
+        return miaoshaGoodsMapper.getMsGoodsDetailById(goodsId);
+    }
 }

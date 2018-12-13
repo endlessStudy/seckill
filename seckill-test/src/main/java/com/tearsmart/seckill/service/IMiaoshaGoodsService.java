@@ -19,4 +19,11 @@ public interface IMiaoshaGoodsService extends IService<MiaoshaGoods> {
      * @return
      */
     List<GoodsVo> getMiaoshaGoodsDesList();
+
+    /**
+     * 根据商品Id查询商品详细信息
+     * @param goodsId
+     * @return
+     */
+    GoodsVo getMiaoshaGoodsDetailById(long goodsId);
 }
