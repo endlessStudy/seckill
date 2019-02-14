@@ -17,9 +17,9 @@ public class MiaoshaUserKey extends BasePrefix {
         this.prefix = prefix;
     }
 
-    public static MiaoshaUserKey token = new MiaoshaUserKey(Constant.USER_COOKIE_EXPIRY, "tk");
+    public static final MiaoshaUserKey TOKEN = new MiaoshaUserKey(Constant.USER_COOKIE_EXPIRY, "tk");
 
-	public static MiaoshaUserKey getById = new MiaoshaUserKey(0, "id");
+	public static final MiaoshaUserKey getbyid = new MiaoshaUserKey(0, "id");
 
 	public MiaoshaUserKey withExpire(int seconds) {
 		return new MiaoshaUserKey(seconds, prefix);

@@ -26,4 +26,5 @@ public interface IMiaoshaGoodsService extends IService<MiaoshaGoods> {
      * @return
      */
     GoodsVo getMiaoshaGoodsDetailById(long goodsId);
+
 }

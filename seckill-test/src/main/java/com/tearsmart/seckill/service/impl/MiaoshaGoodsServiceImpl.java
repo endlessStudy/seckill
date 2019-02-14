@@ -10,7 +10,9 @@ import com.tearsmart.seckill.service.IMiaoshaGoodsService;
 import com.tearsmart.seckill.vo.GoodsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,4 +46,5 @@ public class MiaoshaGoodsServiceImpl extends ServiceImpl<MiaoshaGoodsMapper, Mia
     public GoodsVo getMiaoshaGoodsDetailById(long goodsId) {
         return miaoshaGoodsMapper.getMsGoodsDetailById(goodsId);
     }
+
 }

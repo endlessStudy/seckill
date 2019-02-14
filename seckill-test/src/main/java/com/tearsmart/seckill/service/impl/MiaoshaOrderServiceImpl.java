@@ -1,18 +1,16 @@
 package com.tearsmart.seckill.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.tearsmart.seckill.dao.MiaoshaOrderMapper;
-import com.tearsmart.seckill.domain.MiaoshaGoods;
 import com.tearsmart.seckill.domain.MiaoshaOrder;
+import com.tearsmart.seckill.domain.OrderInfo;
+import com.tearsmart.seckill.service.IGoodsService;
 import com.tearsmart.seckill.service.IMiaoshaGoodsService;
 import com.tearsmart.seckill.service.IMiaoshaOrderService;
 import com.tearsmart.seckill.vo.GoodsVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.math.BigDecimal;
 
 /**
  * <p>
@@ -25,9 +23,11 @@ import java.math.BigDecimal;
 public class MiaoshaOrderServiceImpl extends ServiceImpl<MiaoshaOrderMapper, MiaoshaOrder> implements IMiaoshaOrderService {
     @Autowired
     IMiaoshaGoodsService miaoshaGoodsService;
-
+    @Autowired
+    IGoodsService goodsService;
     @Autowired
     MiaoshaOrderMapper miaoshaOrderMapper;
+
     /**
      * 根据商品Id查询商品详细信息
      * @param goodsId
@@ -44,21 +44,22 @@ public class MiaoshaOrderServiceImpl extends ServiceImpl<MiaoshaOrderMapper, Mia
      * @return
      */
     @Override
-    @Transactional
-    public void addSeckillOrder(long goodsId) {
-        MiaoshaOrder miaoshaOrder = null;
-        // miaoshaOrder.getGoodsId();
-        miaoshaOrder = new MiaoshaOrder();
-        //1547	18912341234	1561	1
-        miaoshaOrder.setGoodsId(1L);
-        miaoshaOrder.setUserId(18922341234L);
-        miaoshaOrder.setOrderId(15L);
-        miaoshaOrderMapper.insert(miaoshaOrder);
-        try {
-            miaoshaGoodsService.test(goodsId);
+    @Transactional(rollbackFor = Exception.class)
+    public OrderInfo addSeckillOrder(long goodsId, long userId) {
+        //根据商品Id减少对应商品库存
+        boolean stock = goodsService.reduceStock(goodsId);
+        if (stock) {
 
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+        //添加秒杀订单
+        MiaoshaOrder order = new MiaoshaOrder();
+        order.setGoodsId(goodsId);
+        order.setUserId(userId);
+        int insert = miaoshaOrderMapper.insert(order);
+        if (insert > 0) {
+
+        }
+    return null;
+
     }
 }

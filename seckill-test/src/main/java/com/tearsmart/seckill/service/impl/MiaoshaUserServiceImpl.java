@@ -7,7 +7,6 @@ import com.tearsmart.seckill.constant.Constant;
 import com.tearsmart.seckill.dao.MiaoshaUserMapper;
 import com.tearsmart.seckill.domain.MiaoshaUser;
 import com.tearsmart.seckill.exception.GlobalException;
-import com.tearsmart.seckill.redis.BasePrefix;
 import com.tearsmart.seckill.redis.MiaoshaUserKey;
 import com.tearsmart.seckill.result.CodeMessage;
 import com.tearsmart.seckill.service.IMiaoshaUserService;
@@ -15,7 +14,6 @@ import com.tearsmart.seckill.service.IRedisService;
 import com.tearsmart.seckill.util.Md5Utils;
 import com.tearsmart.seckill.util.UUIDUtils;
 import com.tearsmart.seckill.vo.LoginVo;
-import org.apache.catalina.connector.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -71,7 +69,7 @@ public class MiaoshaUserServiceImpl extends ServiceImpl<MiaoshaUserMapper, Miaos
         if (StringUtils.isEmpty(token)){
             return null;
         }
-        MiaoshaUser miaoshaUser = redisService.get(MiaoshaUserKey.token, token, MiaoshaUser.class);
+        MiaoshaUser miaoshaUser = redisService.get(MiaoshaUserKey.TOKEN, token, MiaoshaUser.class);
         if (miaoshaUser != null) {
             addCookie(response,miaoshaUser,token);
         }
@@ -85,7 +83,7 @@ public class MiaoshaUserServiceImpl extends ServiceImpl<MiaoshaUserMapper, Miaos
      * @param token
      */
     private void addCookie(HttpServletResponse response, MiaoshaUser user, String token) {
-        redisService.set(MiaoshaUserKey.token,token,user);
+        redisService.set(MiaoshaUserKey.TOKEN,token,user);
         Cookie cookie = new Cookie(Constant.USER_COOKIE_NAME, token);
         cookie.setMaxAge(Constant.USER_COOKIE_EXPIRY);
         cookie.setPath("/");

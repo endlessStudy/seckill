@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -19,6 +20,7 @@ import java.time.LocalDateTime;
  */
 @TableName("miaosha_goods")
 @Data
+@Accessors(chain = true)
 public class MiaoshaGoods extends Model<MiaoshaGoods> {
 
     private static final long serialVersionUID = 1L;

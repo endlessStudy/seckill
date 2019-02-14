@@ -38,7 +38,7 @@ public class PasswordUtil {
             cs[i + 1] = c;
             cs[i + 2] = password.charAt(i / 3 * 2 + 1);
         }
-        return new String(cs);
+        return cs.toString();
     }
 
     /**
@@ -63,7 +63,7 @@ public class PasswordUtil {
     public static String md5Hex(String src) {
         try {
 
-            return new String(DigestUtils.md5Hex(src));
+            return ""+DigestUtils.md5Hex(src);
         } catch (Exception e) {
             return null;
         }

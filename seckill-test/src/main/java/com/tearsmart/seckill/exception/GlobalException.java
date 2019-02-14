@@ -12,7 +12,6 @@ import com.tearsmart.seckill.result.CodeMessage;
  */
 public class GlobalException extends RuntimeException {
 
-    private final long serialVersionUID = 1L;
     private CodeMessage codeMessage;
     public GlobalException(CodeMessage codeMessage) {
         this.codeMessage = codeMessage;

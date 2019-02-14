@@ -34,12 +34,17 @@ public class SeckillApplicationTests {
     private WebApplicationContext context;
     @Autowired
     private RedisTemplate redisTemplate;
+
     @Autowired
 
     @Test
-    public void miaoTest(){
-
+    public void miaoTest() {
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("id", "1")
+                .or().eq("name","liuyl").eq("id", "1");
+        userMapper.selectOne(wrapper);
     }
+
     @Test
     public void test() {
         User user = userMapper.selectOne(new QueryWrapper<>());

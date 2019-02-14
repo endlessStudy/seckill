@@ -14,7 +14,7 @@ public class BasePrefix implements BaseRedisKey {
 
 	private String prefix;
 
-	public static Integer NO_EXPIRE = 0;
+	public static final Integer NO_EXPIRE = 0;
 	public BasePrefix(String prefix) {//0代表永不过期
 		this(0, prefix);
 	}

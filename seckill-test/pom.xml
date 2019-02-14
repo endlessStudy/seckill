@@ -23,6 +23,20 @@
     </properties>
 
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-models -->
+<!-- https://mvnrepository.com/artifact/io.swagger/swagger-models -->
+<dependency>
+    <groupId>io.swagger</groupId>
+    <artifactId>swagger-models</artifactId>
+    <version>2.0.0-rc2</version>
+</dependency>
+        <dependency>
+    <groupId>io.swagger</groupId>
+    <artifactId>swagger-annotations</artifactId>
+    <version>2.0.0-rc2</version>
+</dependency>
+
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>

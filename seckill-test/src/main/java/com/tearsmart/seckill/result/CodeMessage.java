@@ -13,34 +13,41 @@ public class CodeMessage {
     /**
      * 成功
      */
-    public static CodeMessage SUCCESS = new CodeMessage(0, "success!");
+    public static final CodeMessage SUCCESS = new CodeMessage(0, "success!");
     /**
+     * 5001xx
      * 服务器异常
      */
-    public static CodeMessage SERVER_ERROR = new CodeMessage(500100, "服务端异常!");
-    public static CodeMessage BIND_EXCEPTION = new CodeMessage(500100, "参数校验异常: %s");
+    public static final CodeMessage SERVER_ERROR = new CodeMessage(500100, "服务端异常!");
+    public static final CodeMessage BIND_EXCEPTION = new CodeMessage(500100, "参数校验异常: %s");
     /**
-     * 登录相关异常
+     * 登录相关异常  5002xx
      * <p>
      * 密码不能为空
      */
-    public static CodeMessage PASSWORD_EMPTY = new CodeMessage(500200, "密码不能为空!");
+    public static final CodeMessage PASSWORD_EMPTY = new CodeMessage(500200, "密码不能为空!");
     /**
      * 电话号码不能为空
      */
-    public static CodeMessage PHONE_EMPTY = new CodeMessage(500201, "电话号码不能为空!");
+    public static final CodeMessage PHONE_EMPTY = new CodeMessage(500201, "电话号码不能为空!");
     /**
      * 电话号码不能为空
      */
-    public static CodeMessage PHONE_FORMAT_ERROR = new CodeMessage(500201, "电话号码格式错误!");
+    public static final CodeMessage PHONE_FORMAT_ERROR = new CodeMessage(500201, "电话号码格式错误!");
     /**
      * 电话号码不能为空
      */
-    public static CodeMessage USER_NOT_EXIST = new CodeMessage(500201, "帐号不存在!");
+    public static final CodeMessage USER_NOT_EXIST = new CodeMessage(500201, "帐号不存在!");
     /**
      * 密码错误
      */
-    public static CodeMessage PASSWORD_ERROR = new CodeMessage(500201, "密码错误!");
+    public static final CodeMessage PASSWORD_ERROR = new CodeMessage(500201, "密码错误!");
+    //秒杀模块 5005xx
+     /**
+     * 库存为零
+     */
+    public static final CodeMessage STOCK_ZERO   = new CodeMessage(500501, "商品已被秒杀完!");
+    public static final CodeMessage REPEAT_ERROR   = new CodeMessage(500501, "您已秒杀成功 ,请勿重复秒杀!");
 
     /**
      * 信息的状态码

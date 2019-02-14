@@ -22,7 +22,9 @@ import javax.servlet.http.HttpServletResponse;
 @Service
 public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements IGoodsService {
     @Autowired
-    IMiaoshaUserService miaoshaUserService;
+    private IMiaoshaUserService miaoshaUserService;
+    @Autowired
+    private GoodsMapper goodsMapper;
 
     /**
      * 从redis中获取秒杀用户
@@ -30,11 +32,20 @@ public class GoodsServiceImpl extends ServiceImpl<GoodsMapper, Goods> implements
      * @return 秒杀用户
      */
     @Override
-    public MiaoshaUser getMiaoshaUserFromRedis(HttpServletResponse response,String token) {
+    public MiaoshaUser getMiaoshaUserFromRedis(HttpServletResponse response, String token) {
         if (StringUtils.isEmpty(token)) {
             return null;
         }
-        MiaoshaUser miaoshaUser = miaoshaUserService.getUserFromRedis(response,token);
+        MiaoshaUser miaoshaUser = miaoshaUserService.getUserFromRedis(response, token);
         return miaoshaUser;
+    }
+     /**
+     * 根据商品id 减少库存
+     * @param id
+     * @return 更新条数
+     */
+    @Override
+    public boolean reduceStock(long id) {
+       return goodsMapper.reduceStock(id) > 0;
     }
 }

@@ -20,5 +20,12 @@ public interface IGoodsService extends IService<Goods> {
      * @param token
      * @return 秒杀用户
      */
-    MiaoshaUser getMiaoshaUserFromRedis(HttpServletResponse response,String token);
+    MiaoshaUser getMiaoshaUserFromRedis(HttpServletResponse response, String token);
+
+    /**
+     * 根据商品id 减少库存
+     * @param id
+     * @return 更新条数
+     */
+    boolean reduceStock(long id);
 }

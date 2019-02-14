@@ -2,9 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Title</title>
+    <head>
+        <meta charset="UTF-8">
+        <!-- import CSS -->
+        <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+        <meta http-equiv="Content-Type" content="multipart/form-data;charset=utf-8"/>
+    </head>
 </head>
 <body>
-$END$
+<el-upload class="upload-demo"
+           drag
+           action="123"
+           :before-upload="beforeUpload"
+           multiple
+           ref="newupload"
+           :auto-upload="false"
+           accept=".mp4,.flv,.mov"
+           :on-change="newhandleChange"
+           :on-success="newhandlesuccess">
+    <i class="el-icon-upload"></i>
+    <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
+    <div class="el-upload__tip" slot="tip">请注意您只能上传.mp4 .flv .mov格式的视频文件</div>
+</el-upload>
+<el-button type="primary" @click="newSubmitForm()" class="yes-btn">
+    确 定
+</el-button>
+<el-button @click="resetForm('newform')">
+    重 置
+</el-button>
 </body>
+
+</body>
+<script>
+  export default {
+    data() {
+      return {
+        dialogImageUrl: '',
+        dialogVisible: false
+      };
+    },
+    methods: {
+      handleRemove(file, fileList) {
+        console.log(file, fileList);
+      },
+      handlePictureCardPreview(file) {
+        this.dialogImageUrl = file.url;
+        this.dialogVisible = true;
+      }
+    }
+  }
+</script>
 </html>

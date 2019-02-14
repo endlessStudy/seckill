@@ -45,7 +45,7 @@ public class MiaoshaUser extends Model<MiaoshaUser> {
     private String nickname;
 
     /**
-     * MD5(MD5(pass明文+固定salt) + salt)
+     * MD5(MD5(pass明文+固定salt) + 随机salt)
      */
     @NotNull
     private String password;

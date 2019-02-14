@@ -1,14 +1,13 @@
 package com.tearsmart.seckill.controller;
 
 
-import com.tearsmart.seckill.domain.MiaoshaUser;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.tearsmart.seckill.dao.GoodsMapper;
+import com.tearsmart.seckill.domain.Goods;
 import com.tearsmart.seckill.service.IGoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * <p>
@@ -22,5 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 public class GoodsController {
     @Autowired
     IGoodsService iGoodsService;
+    @Autowired
+    GoodsMapper goodsMapper;
+
 
 }

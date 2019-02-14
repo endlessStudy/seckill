@@ -1,9 +1,9 @@
 package com.tearsmart.seckill.domain;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import lombok.Data;
+import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -16,6 +16,8 @@ import java.math.BigDecimal;
  * @since 2018-12-05
  */
 @TableName("goods")
+@Data
+@Accessors(chain = true)
 public class Goods extends Model<Goods> {
 
     private static final long serialVersionUID = 1L;
@@ -57,77 +59,9 @@ public class Goods extends Model<Goods> {
     private Integer goodsStock;
 
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getGoodsName() {
-        return goodsName;
-    }
-
-    public void setGoodsName(String goodsName) {
-        this.goodsName = goodsName;
-    }
-
-    public String getGoodsTitle() {
-        return goodsTitle;
-    }
-
-    public void setGoodsTitle(String goodsTitle) {
-        this.goodsTitle = goodsTitle;
-    }
-
-    public String getGoodsImg() {
-        return goodsImg;
-    }
-
-    public void setGoodsImg(String goodsImg) {
-        this.goodsImg = goodsImg;
-    }
-
-    public String getGoodsDetail() {
-        return goodsDetail;
-    }
-
-    public void setGoodsDetail(String goodsDetail) {
-        this.goodsDetail = goodsDetail;
-    }
-
-    public BigDecimal getGoodsPrice() {
-        return goodsPrice;
-    }
-
-    public void setGoodsPrice(BigDecimal goodsPrice) {
-        this.goodsPrice = goodsPrice;
-    }
-
-    public Integer getGoodsStock() {
-        return goodsStock;
-    }
-
-    public void setGoodsStock(Integer goodsStock) {
-        this.goodsStock = goodsStock;
-    }
-
     @Override
     protected Serializable pkVal() {
         return this.id;
     }
 
-    @Override
-    public String toString() {
-        return "Goods{" +
-                "id=" + id +
-                ", goodsName=" + goodsName +
-                ", goodsTitle=" + goodsTitle +
-                ", goodsImg=" + goodsImg +
-                ", goodsDetail=" + goodsDetail +
-                ", goodsPrice=" + goodsPrice +
-                ", goodsStock=" + goodsStock +
-                "}";
-    }
 }

@@ -10,6 +10,7 @@ import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.converts.MySqlTypeConvert;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.config.rules.PropertyInfo;
+import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.baomidou.mybatisplus.generator.engine.VelocityTemplateEngine;
 import org.apache.commons.lang3.StringUtils;
 
@@ -47,24 +48,27 @@ public class CodeGenerator {
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
         String projectPath = System.getProperty("user.dir");
-        gc.setOutputDir(projectPath);
+        gc.setOutputDir(projectPath );
         gc.setAuthor("tear-smart");
+        gc.setSwagger2(true);
         gc.setActiveRecord(true);
         gc.setBaseResultMap(true);
         gc.setBaseColumnList(true);
-        gc.setOpen(false);
+        gc.setServiceName("%sService");
+        gc.setEntityName("%s");
+        gc.setOpen(true);
         mpg.setGlobalConfig(gc);
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setDbType(DbType.MYSQL);
-        dsc.setUrl("jdbc:mysql://localhost:3306/miaosha?useUnicode=true&useSSL=false&characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://localhost:3306/cpm?useUnicode=true&useSSL=false&characterEncoding=utf8");
         // dsc.setSchemaName("public");
-        dsc.setTypeConvert(new MySqlTypeConvert() {
+        dsc.setTypeConvert(new MySqlTypeConvert(){
             @Override
-            public PropertyInfo processTypeConvert(GlobalConfig globalConfig, String fieldType) {
-                return super.processTypeConvert(globalConfig, fieldType);
-            }
+           public PropertyInfo processTypeConvert(GlobalConfig globalConfig, String fieldType) {
+               return super.processTypeConvert(globalConfig, fieldType);
+           }
 
 
         });
@@ -79,9 +83,9 @@ public class CodeGenerator {
         pc.setParent("com.tearsmart.seckill");
         pc.setEntity("domain");
         pc.setMapper("dao");
-        pc.setService("service");
-        pc.setServiceImpl("service.impl");
-        pc.setController("controller");
+        // pc.setService("service");
+        // pc.setServiceImpl("service.impl");
+        // pc.setController("controller");
         pc.setXml("xml");
         mpg.setPackageInfo(pc);
 
@@ -112,14 +116,15 @@ public class CodeGenerator {
         strategy.setNaming(NamingStrategy.underline_to_camel);
         // strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         // strategy.setSuperEntityClass("com.lyl.mongo.common.BaseEntity");
-        // strategy.setEntityLombokModel(true);
+        strategy.setEntityLombokModel(true);
         // strategy.setRestControllerStyle(true);
         // strategy.setSuperMapperClass("com.lyl.mongo.common.Mapper");
         // strategy.setSuperControllerClass("com.lyl.mongo.common.BaseController");
         // strategy.setSuperServiceClass("com.lyl.mongo.common.BaseService");
         // strategy.setSuperServiceImplClass("com.lyl.mongo.common.BaseServiceImpl");
-        strategy.setInclude("miaosha_user");
-        // strategy.setSuperEntityColumns("id");
+        // strategy.setInclude("goods");
+        strategy.entityTableFieldAnnotationEnable(true);
+        strategy.setSuperEntityColumns("id");
         // strategy.setControllerMappingHyphenStyle(true);
         // strategy.setTablePrefix(pc.getModuleName() + "_");
         mpg.setStrategy(strategy);
