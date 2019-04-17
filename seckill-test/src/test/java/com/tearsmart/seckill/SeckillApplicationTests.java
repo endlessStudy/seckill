@@ -3,6 +3,8 @@ package com.tearsmart.seckill;
 
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.tearsmart.seckill.dao.UserMapper;
 import com.tearsmart.seckill.domain.User;
 import com.tearsmart.seckill.service.IRedisService;
@@ -40,8 +42,14 @@ public class SeckillApplicationTests {
     @Test
     public void miaoTest() {
         QueryWrapper<User> wrapper = new QueryWrapper<>();
-        wrapper.eq("id", "1")
-                .or().eq("name","liuyl").eq("id", "1");
+        // wrapper.eq("id", "1")
+        //         .or().eq("name","liuyl").eq("id", "1");
+        IPage page = new Page<>(1,2);
+        if (page.ascs() == null && page.descs() == null ) {
+            ((Page) page).setAsc("name");
+        }
+        IPage iPage = userMapper.selectPage(page, wrapper);
+        System.out.println(iPage.getRecords().toString());
         userMapper.selectOne(wrapper);
     }
 

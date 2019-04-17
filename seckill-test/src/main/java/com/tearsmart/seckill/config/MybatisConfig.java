@@ -1,6 +1,7 @@
 package com.tearsmart.seckill.config;
 
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
+import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,12 +31,16 @@ public class MybatisConfig {
     }
 
 
+    @Bean
+    public PerformanceInterceptor performanceInterceptor() {
+        return new PerformanceInterceptor();
+    }
 
-
-    // @Bean
-    // public PerformanceInterceptor performanceInterceptor() {
-    //     return new PerformanceInterceptor();
-    // }
+    @Bean
+    public PaginationInterceptor paginationInterceptor() {
+        PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
+        return paginationInterceptor;
+    }
 
     @Bean
     public OptimisticLockerInterceptor optimisticLockerInterceptor() {
