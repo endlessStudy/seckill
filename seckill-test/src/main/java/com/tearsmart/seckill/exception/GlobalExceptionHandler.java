@@ -31,7 +31,6 @@ public class GlobalExceptionHandler {
         } else if (e instanceof BindException) {
             BindException bind = (BindException) e;
             //返回出异常的方法
-            // Map<String, Object> model = bind.getModel();
             List<ObjectError> errors = bind.getAllErrors();
             return Result.error(CodeMessage.BIND_EXCEPTION.fillArgs(errors.get(0).getDefaultMessage()));
         } else {

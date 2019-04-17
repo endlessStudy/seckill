@@ -12,16 +12,13 @@ import com.tearsmart.seckill.result.CodeMessage;
  */
 public class GlobalException extends RuntimeException {
 
-    private CodeMessage codeMessage;
+    private final CodeMessage codeMessage;
     public GlobalException(CodeMessage codeMessage) {
         this.codeMessage = codeMessage;
     }
 
-    public CodeMessage getCodeMessage() {
+    CodeMessage getCodeMessage() {
         return codeMessage;
     }
 
-    public void setCodeMessage(CodeMessage codeMessage) {
-        this.codeMessage = codeMessage;
-    }
 }
